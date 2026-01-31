@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Tech | Cursos de Programación</title>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #22c55e;
+            --dark: #020617;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 40px;
+            color: var(--secondary);
+        }
+
+        /* ================= NAVBAR ================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(2,6,23,0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu a {
+            color: var(--light);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: var(--secondary);
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(2,6,23,0.85), rgba(2,6,23,0.85)),
+                url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: var(--primary);
+            padding: 14px 28px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* ================= CURSOS ================= */
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .course-card {
+            background: #020617;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .course-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-content h3 {
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .level {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* ================= BENEFICIOS ================= */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            text-align: center;
+        }
+
+        .benefit {
+            background: #020617;
+            padding: 30px;
+            border-radius: 14px;
+        }
+
+        .benefit img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        /* ================= METODOLOGÍA ================= */
+        .method {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* ================= TESTIMONIOS ================= */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial {
+            background: #020617;
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .testimonial img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* ================= CONTACTO ================= */
+        form {
+            max-width: 600px;
+            margin: auto;
+            display: grid;
+            gap: 15px;
+        }
+
+        input, textarea {
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #020617;
+            padding: 30px;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        /* ================= WHATSAPP ================= */
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .menu {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <nav>
+        <div class="logo">AcademiaTech</div>
+        <div class="menu">
+            <a href="#inicio">Inicio</a>
+            <a href="#cursos">Cursos</a>
+            <a href="#beneficios">Beneficios</a>
+            <a href="#metodologia">Metodología</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+    <div>
+        <h1>Aprende a Programar desde Cero hasta Profesional</h1>
+        <p>Domina las tecnologías más demandadas del mercado con proyectos reales</p>
+        <a href="#cursos" class="btn">Ver Cursos</a>
+    </div>
+</section>
+
+<!-- CURSOS -->
+<section id="cursos">
+    <h2>Nuestros Cursos</h2>
+    <div class="courses">
+
+        <div class="course-card">
+            <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6">
+            <div class="course-content">
+                <h3>HTML & CSS</h3>
+                <p class="level">Nivel: Básico</p>
+                <p>Diseña sitios web modernos, atractivos y responsivos.</p>
+                <a class="btn" href="#">Más información</a>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4">
+            <div class="course-content">
+                <h3>Python</h3>
+                <p class="level">Nivel: Básico – Intermedio</p>
+                <p>Automatización, lógica, datos e introducción a IA.</p>
+                <a class="btn" href="#">Más información</a>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee">
+            <div class="course-content">
+                <h3>React</h3>
+                <p class="level">Nivel: Intermedio</p>
+                <p>Aplicaciones web modernas y escalables.</p>
+                <a class="btn" href="#">Más información</a>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+            <div class="course-content">
+                <h3>Java</h3>
+                <p class="level">Nivel: Intermedio – Avanzado</p>
+                <p>Backend robusto y programación orientada a objetos.</p>
+                <a class="btn" href="#">Más información</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+    <h2>¿Por qué elegirnos?</h2>
+    <div class="benefits">
+        <div class="benefit">
+            <img src="https://cdn-icons-png.flaticon.com/512/201/201614.png">
+            <p>Aprendizaje práctico</p>
+        </div>
+        <div class="benefit">
+            <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png">
+            <p>Proyectos reales</p>
+        </div>
+        <div class="benefit">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png">
+            <p>Certificado</p>
+        </div>
+        <div class="benefit">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png">
+            <p>Acceso de por vida</p>
+        </div>
+    </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section id="metodologia">
+    <h2>Nuestra Metodología</h2>
+    <p class="method">
+        Clases paso a paso, ejercicios guiados, proyectos reales
+        y acompañamiento constante para garantizar tu aprendizaje.
+    </p>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+    <h2>Contacto</h2>
+    <form>
+        <input type="text" placeholder="Nombre" required>
+        <input type="email" placeholder="Correo electrónico" required>
+        <textarea placeholder="Mensaje"></textarea>
+        <button class="btn">Enviar</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 Academia Tech | Todos los derechos reservados
+</footer>
+
+<a class="whatsapp" href="https://wa.me/XXXXXXXXXX" target="_blank">💬</a>
+
+</body>
+</html>
